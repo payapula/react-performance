@@ -6,6 +6,8 @@ function CountButton({count, onClick}) {
   return <button onClick={onClick}>{count}</button>
 }
 
+const MemoCount = React.memo(CountButton)
+
 function NameInput({name, onNameChange}) {
   return (
     <label>
@@ -14,6 +16,8 @@ function NameInput({name, onNameChange}) {
   )
 }
 
+const MemoName = React.memo(NameInput)
+
 function Example() {
   const [name, setName] = React.useState('')
   const [count, setCount] = React.useState(0)
@@ -21,10 +25,10 @@ function Example() {
   return (
     <div>
       <div>
-        <CountButton count={count} onClick={increment} />
+        <MemoCount count={count} onClick={increment} />
       </div>
       <div>
-        <NameInput name={name} onNameChange={setName} />
+        <MemoName name={name} onNameChange={setName} />
       </div>
       {name ? <div>{`${name}'s favorite number is ${count}`}</div> : null}
     </div>
